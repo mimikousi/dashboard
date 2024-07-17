@@ -9,7 +9,8 @@ import japanize_matplotlib
 import seaborn as sns
 
 # データの読み込み
-@st.cache_data
+#@st.cache_data
+@st.cache
 def load_data():
     df = pd.read_csv('debutanizer_data.csv', header=0)
     start_datetime = '2024-01-01 00:00:00'
