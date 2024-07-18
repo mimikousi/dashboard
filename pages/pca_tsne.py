@@ -32,6 +32,7 @@ st.title('PCAとt-SNEの可視化')
 
 # サイドバーのオプション
 variable = st.sidebar.selectbox('プロットを色分けする変数を選択:', df.columns)
+perplexity_value = st.sidebar.slider('t-SNE Perplexity', min_value=5, max_value=50, value=30)
 
 # データの標準化
 scaler = StandardScaler()
@@ -69,7 +70,7 @@ ax2.grid(False)
 st.pyplot(fig)
 
 # t-SNEの実行
-tsne = TSNE(n_components=2, random_state=0)
+tsne = TSNE(n_components=2, random_state=0,perplexity=perplexity_value)
 tsne_results = tsne.fit_transform(df_scaled)
 tsne_df = pd.DataFrame(data=tsne_results, columns=['D1', 'D2'])
 tsne_df[variable] = df[variable].values
